@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>
+            {% block  title%}{% endblock %}
+        </title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div class="container-fluid" style="background-color:#FFF4C1">
+            {% include "header.html" %}
+            <div class="row">
+                <div class="col-sm-3 col-md-3">
+                    <div class="card" style="background-color:#FFAD86; margin-bottom: 10px">
+                        <div class="card-header">
+                            <div class="card" style="background-color:#FFAD86;">
+                                <div class="card" style="background-color:#842B00;">
+                                    <h3 style="font-family:微軟正黑體; color:#FFF4C1; margin-left: 10px; margin-bottom: 0px; padding: 10px">關於本館</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="list-group">
+                                
+                                <a style="font-family:微軟正黑體;color:#FFF4C1;background-color:#842B00" href="/" class="list-group-item">首頁</a>
+                                <a style="font-family:微軟正黑體;color:#FFF4C1;background-color:#842B00" href="/book_list/" class="list-group-item">借還書系統</a>
+                            
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card" style="background-color:#FFAD86; margin-top: 30 px">
+                        <div class="card-header">
+                            <div class="card" style="background-color:#FFAD86;">
+                                <div class="card" style="background-color:#842B00;">
+                                    <h3 style="font-family:微軟正黑體; color:#FFF4C1; margin-left: 10px; margin-bottom: 0px; padding: 10px">分館網站</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="list-group">
+                                
+                                <a style="font-family:微軟正黑體;color:#FFF4C1;background-color:#842B00" href="https://www.ncl.edu.tw" class="list-group-item">國家分館</a>
+                                <a style="font-family:微軟正黑體;color:#FFF4C1;background-color:#842B00" href="https://www.ntl.edu.tw/mp.asp?mp=1" class="list-group-item">臺灣分館</a>
+                                <a style="font-family:微軟正黑體;color:#FFF4C1;background-color:#842B00" href="https://tpml.gov.taipei" class="list-group-item">臺北分館</a>
+                                <a style="font-family:微軟正黑體;color:#FFF4C1;background-color:#842B00" href="https://library.ntub.edu.tw/wSite/mp" class="list-group-item">北商分館</a>
+                                <h3>-------------------</h3>
+                                <h3>11056017 吳佳憲</h3>
+                                <h3>11056043 高其佑</h3>
+                                <h3>11056046 張書翊</h3>
+                                <h3>-------------------</h3>    
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-9 col-md-9">
+                    <div class="card" style="background-color:#FFAD86">
+                        <div class="card-header">
+                            {% block headmessage %}
+                            {% endblock %}
+                        </div>
+                        <div class="card-body">
+                            {% block content %} {% endblock %}
+                        </div>
+                        <div class="card-footer">
+                            {% include "footer.html" %}
+                        </div>
+                </div>
+            </div>
+        </div>
+        <script src="" async defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    </body>
+</html>

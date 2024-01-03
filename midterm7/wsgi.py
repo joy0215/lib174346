@@ -1,5 +1,5 @@
 """
-WSGI config for lib174346 project.
+WSGI config for midterm7 project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'lib174346.settings')
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "midterm7.settings")
 
 application = get_wsgi_application()
