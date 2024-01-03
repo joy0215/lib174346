@@ -16,9 +16,10 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import path , include
 from mysite import views as mv
 from mysite.views import book_list, borrow_book, return_book
+from mytest import views as testv
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,5 +28,18 @@ urlpatterns = [
     path('book_list/', book_list, name='book_list'),
     path('borrow/<int:book_id>/', borrow_book, name='borrow_book'),
     path('return/<int:book_id>/', return_book, name='return_book'),
+    path('post/', mv.show_all_posts, name="show-all-posts"),
+    path('post/<int:post_id>/comments', mv.show_comments, name='show-comments'),
+    path('post/new', mv.new_post, name="post-new"),
+    path('test/', testv.index, name="test-new"),
+    path('test/delpost/<int:pid>/', testv.delpost),
+    path('test/contact', testv.contact),
+    path('post2db/', testv.post2db),
+    path('register/', testv.register),
+    path('login/', testv.login, name='login'),
+    path('profile/', testv.profile),
+    path('borrow/<int:id>/', borrow_book, name='borrow_book'),
+    path('book_details/', testv.book_details),
     
+
 ]

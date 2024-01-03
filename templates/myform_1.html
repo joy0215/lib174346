@@ -1,0 +1,31 @@
+{% extends 'base.html' %}<!--會先繼承base裡面的網站 然後如果後面有提到block ...就是post的把base的蓋掉-->
+
+{% block title %}表單輸入{% endblock title %}<!--存到資料庫-->
+{% block headmessage %} 
+    <a style='font-family:微軟正黑體;' href='/'>回首頁</a>
+{% endblock headmessage %}
+{% block content %}<!--在裡面放表單-->
+
+<h2>HTML Forms</h2>
+<form action="" method="post"><!--如果寫成GET會出現在網址(輸入的東西) 如果改成post會出錯(如果要改)-->
+    {% csrf_token %}<!--如果多這行 上面打POST就不會錯(要確定網址只有自己設得)-->
+    <label for="title">title:</label><br><!--標題-->
+    <input type="text" id="title" name="title"><br><!--沒有value就是沒有預設值-->
+
+    <label for="title">類別:</label><br>
+    <input type="checkbox" id="tech" name="category" value="科技"></input><!--id:是tech 就會對應到下面一行的tech 就跟下面生活那些是一樣的意思-->
+    <label for="tech">科技</label>
+    <input type="checkbox" id="mood" name="category" value="心情"></input><!--name 是給後端看得-->
+    <label for="mood">心情</label><!--為了mood這個id設計-->
+    <input type="checkbox" id="life" name="category" value="生活">生活</input>
+    <input type="checkbox" id="edu" name="category" value="教育">教育</input>
+    <input type="checkbox" id="other" name="category" value="其他">其他</input><br>
+
+    <label for="lname">slug:</label><br><!--網址-->
+    <input type="text" id="slug" name="slug"><br><br>
+    <label for ="content">內文:</label><br>
+    <textarea id='content' name = 'content' cols='30'> <!--輸入多行-->
+    </textarea>
+    <input type="submit" value="送出">
+</form> 
+{% endblock content %}
