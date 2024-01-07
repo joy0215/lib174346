@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from mysite.models import Post, Comment , Book ,BorrowingHistory
+from mysite.models import Post, Comment , Book ,BorrowingHistor2
 from django.http import HttpResponse , HttpResponseRedirect
 from datetime import datetime
 from django.shortcuts import redirect
@@ -7,6 +7,7 @@ from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.utils.text import slugify
 from django.utils import timezone
 from django.urls import reverse
+from django.db.models import Q
 
 # Create your views here.
 def homepage(request):
@@ -34,30 +35,6 @@ def book_list(request):
     return render(request, 'book_list.html', {'books': books})
 
 
-'''def borrow_book(request, book_id):
-    book = get_object_or_404(Post, id=book_id)
-
-    if not book.isBorrow:
-        book.isBorrow = True
-        book.save()
-
-    # 假設你有一個表單，其中包含借書人姓名等信息
-    borrower_name = request.POST['borrower_name']
-
-    if not book.is_borrowed:
-        # 更新書籍狀態
-        book.is_borrowed = True
-        book.save()
-
-        # 創建借還書紀錄
-        BorrowingHistory.objects.create(
-            book=book,
-            borrower_name=borrower_name,
-            borrowed_date=timezone.now()
-        )
-
-    return HttpResponseRedirect(reverse('book_detail', args=(book.id,))) '''
-
 
 def borrow_book(request, book_id):
     #book = get_object_or_404(Book, pk=book_id)
@@ -71,9 +48,9 @@ def borrow_book(request, book_id):
         book.save()
 
         # 創建借還書紀錄
-        BorrowingHistory.objects.create(
+        BorrowingHistor2.objects.create(
                 book=book,
-                borrowed_date=timezone.now()
+                date=timezone.now()
             ).save()
         
             
@@ -89,9 +66,9 @@ def return_book(request, book_id):
         book.isBorrow = False
         book.save()
         
-        BorrowingHistory.objects.create(
+        BorrowingHistor2.objects.create(
             book=book,
-            returned_date=timezone.now()
+            date=timezone.now()
         ).save()
 
     return redirect('/book_list')
@@ -120,3 +97,15 @@ def new_post(request):
     
 
 
+def book_details(request):
+    # 獲取所有的 BorrowingHistor2 記錄
+    borrowing_history = BorrowingHistor2.objects.all()
+
+    return render(request, 'book_details.html', {'BorrowingHistor2s': borrowing_history})
+
+def book_search(request):
+    query = request.GET.get('query', '')
+    posts = Post.objects.filter(title__icontains=query)
+
+    context = {'posts': posts, 'query': query}
+    return render(request, 'book_search.html', context)

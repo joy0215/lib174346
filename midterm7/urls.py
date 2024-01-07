@@ -18,7 +18,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path , include
 from mysite import views as mv
-from mysite.views import book_list, borrow_book, return_book
+from mysite.views import book_list, borrow_book, return_book , book_search
 from mytest import views as testv
 
 urlpatterns = [
@@ -39,7 +39,7 @@ urlpatterns = [
     path('login/', testv.login, name='login'),
     path('profile/', testv.profile),
     path('borrow/<int:id>/', borrow_book, name='borrow_book'),
-    path('book_details/', testv.book_details),
-    
+    path('book_details/', mv.book_details, name='book_details'),
+    path('book_search/', mv.book_search, name='book_search'),
 
 ]

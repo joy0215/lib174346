@@ -13,12 +13,15 @@ class Post(models.Model):
     body = models.TextField()
     isBorrow = models.BooleanField(_("外借中"), default=False)
     pub_date = models.DateTimeField(auto_now_add=True)
+    tags = models.ManyToManyField('Tag', blank=True)
 
     @property
     def formatted_is_borrow(self):
         if self.isBorrow:
+            print(f'{self.title} is borrowed')
             return '<span style="color: white; background-color: red; border: 1px solid white; padding: 3px; border-radius: 3px;">外借中</span>'
         else:
+            print(f'{self.title} is available for borrowing')
             return '<span style="color: white; background-color: green; border: 1px solid white;padding: 3px; border-radius: 3px;">可借閱</span>'
 
     formatted_is_borrow.fget.short_description = "外借狀態"
@@ -28,7 +31,12 @@ class Post(models.Model):
     def __str__(self):
         return self.title
     
+class Tag(models.Model):
+    name = models.CharField(max_length=50, unique=True)
 
+    def __str__(self):
+        return self.name
+    
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     text = models.CharField(max_length=200)
@@ -86,11 +94,16 @@ class BorrowingHistory(models.Model):
         return f"{self.book.title} - {self.borrower_name}"
 
 class BorrowingHistor2(models.Model):
+    BR_CHOICES = [
+        ('B', '借'),
+        ('H', '還'),
+    ]
+
     book = models.ForeignKey(Post, on_delete=models.CASCADE)
-    br = models.CharField(max_length=50)
-    date = models.DateField()
+    br = models.CharField(max_length=1, choices=BR_CHOICES)
+    date = models.DateTimeField()
 
 
     def __str__(self):
         return f"{self.book.title}"
-    
+
