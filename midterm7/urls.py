@@ -40,6 +40,5 @@ urlpatterns = [
     path('profile/', testv.profile),
     path('borrow/<int:id>/', borrow_book, name='borrow_book'),
     path('book_details/', mv.book_details, name='book_details'),
-    path('book_search/', mv.book_search, name='book_search'),
-
+    path('book_search/', book_search , name='book_search'),
 ]
