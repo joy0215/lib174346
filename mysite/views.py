@@ -104,12 +104,14 @@ def book_details(request):
     return render(request, 'book_details.html', {'BorrowingHistor2s': borrowing_history})
 
 
+
 def book_search(request):
-    query = request.GET.get('query', '')
+    query = request.GET.get('query', '')  # 如果未提供搜尋條件，預設為空字串
+    posts = []
+
     if query:
+        # 只有在搜尋詞存在時才進行查詢
         posts = Post.objects.filter(title__icontains=query)
-    else:
-        posts = []  # 若搜尋條件為空，則將 posts 設為空列表
 
     context = {'posts': posts, 'query': query}
     return render(request, 'book_search.html', context)

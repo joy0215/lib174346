@@ -1,27 +1,23 @@
-<!-- 在您的 templates/book_search.html 中 -->
-
 {% extends 'base.html' %}
 
 {% block content %}
   <h1>Search Results</h1>
 
   <form action="{% url 'book_search' %}" method="get">
-    <input type="text" name="query" value="{% if query == '' %}0{% else %}{{ query }}{% endif %}" />
+    <input type="text" name="query" value="{{ query }}" />
     <input type="submit" value="Search" />
   </form>
 
-  {% if query == "0" %}
-    <p>請輸入欲查詢書籍名稱關鍵字</p>
-  {% else %}
+  {% if query %}
     {% if posts %}
-      <h2>搜尋結果 for "{{ query }}"</h2>
+      <h2>Search results for "{{ query }}"</h2>
       <ul>
         {% for post in posts %}
           <li>
             <h2>{{ post.title }}</h2>
-            <p><strong>書名：</strong> {{ post.title }}</p>
-            <p><strong>作者：</strong> {{ post.write }}</p>
-            <p><strong>建議價格:</strong> {{ post.intro }}</p>
+            <p><strong>書籍名稱:</strong> {{ post.title }}</p>
+            <p><strong>作者名稱：</strong> {{ post.write }}</p>
+            <p><strong>建議售價:</strong> {{ post.intro }}</p>
             <p><strong>借閱狀態:</strong> {{ post.formatted_is_borrow|safe }}</p>
           </li>
         {% endfor %}
