@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>Search Results</h1>
+<h1 style="font-family: 微軟正黑體; font-size: 18pt; font-weight: bold; color: #00008B; margin-top: 20px;">搜尋書籍</h1>
 
   <form action="{% url 'book_search' %}" method="get">
     <input type="text" name="query" value="{{ query }}" />
@@ -10,7 +10,9 @@
 
   {% if query %}
     {% if posts %}
-      <h2>Search results for "{{ query }}"</h2>
+    <h2 style="font-family:微軟正黑體; font-size: 20pt; color:#FFF4C1; margin-left: 10px; margin-bottom: 0px; padding: 10px">有關 "{{ query }}"的搜尋結果
+
+    </h2>
       <ul>
         {% for post in posts %}
           <li>
